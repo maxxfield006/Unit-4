@@ -5,21 +5,25 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    public Transform player;
-    public NavMeshAgent enemy;
+    GameObject player;
+    Rigidbody enemyRb;
+    public float enemySpeed;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player");
+        enemyRb = GetComponent<Rigidbody>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemy.SetDestination(player.position);
-        
+        Vector3 direction = (player.transform.position - transform.position).normalized * enemySpeed;
+
+        enemyRb.AddForce(direction);
     }
     
 }

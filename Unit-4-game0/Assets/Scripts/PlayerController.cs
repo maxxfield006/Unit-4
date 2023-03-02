@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(1000, 1000, 1000);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(450, 450, 450);
         }
     }
 }
