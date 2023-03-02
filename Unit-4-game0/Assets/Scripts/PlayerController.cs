@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -19,7 +20,16 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * Time.deltaTime * vertical * speed);
-        transform.Translate(Vector3.right * Time.deltaTime * horizontal * speed);
+        rb.AddForce(Vector3.right * Time.deltaTime * horizontal * speed);
+        rb.AddForce(Vector3.forward * Time.deltaTime * vertical * speed);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(1000, 1000, 1000);
+        }
     }
 }
