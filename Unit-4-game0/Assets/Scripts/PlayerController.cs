@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
     public float speed;
+
+     public float attackForce = 500;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(450, 450, 450);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(attackForce, attackForce, attackForce);
         }
     }
 }
