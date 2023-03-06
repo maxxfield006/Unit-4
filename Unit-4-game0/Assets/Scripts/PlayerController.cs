@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
      public float attackForce = 500;
+     public bool isPower = false;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
     }
 
     // Update is called once per frame
@@ -33,5 +34,16 @@ public class PlayerController : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(attackForce, attackForce, attackForce);
         }
+        if (collision.gameObject.CompareTag("powerUp"))
+        {
+            Destroy(collision.gameObject);
+            attackForce += 1000;
+            isPower = true;
+
+            isPower = false;
+
+        }
     }
+
+   
 }

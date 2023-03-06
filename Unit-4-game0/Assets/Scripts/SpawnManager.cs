@@ -7,6 +7,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemy;
     public GameObject powerUp;
 
+    public PlayerController playerScript;
+
     float zRange = 8;
     float xRange = 9;
 
@@ -16,8 +18,16 @@ public class SpawnManager : MonoBehaviour
     float powerSpawn = 10f;
     void Start()
     {
+        playerScript = GetComponent<PlayerController>();
+
+
         InvokeRepeating("SpawnEnemies", startSpawn, spawnInterval);
-        InvokeRepeating("SpawnPowerUps", powerSpawn, powerSpawn);
+
+        if (playerScript.isPower = false)
+        {
+            InvokeRepeating("SpawnPowerUps", powerSpawn, powerSpawn);
+        }
+        
     }
 
     // Update is called once per frame
