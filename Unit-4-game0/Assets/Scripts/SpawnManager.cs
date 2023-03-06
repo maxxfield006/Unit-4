@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     float spawnInterval = 2f;
     float startSpawn = 2f;
 
-    float powerSpawn = 10f;
+    float powerSpawn = 7f;
     void Start()
     {
         playerScript = GetComponent<PlayerController>();
@@ -23,17 +23,16 @@ public class SpawnManager : MonoBehaviour
 
         InvokeRepeating("SpawnEnemies", startSpawn, spawnInterval);
 
-        if (playerScript.isPower = false)
+        if (playerScript.isPower == false)
         {
-            InvokeRepeating("SpawnPowerUps", powerSpawn, powerSpawn);
+            InvokeRepeating("SpawnPowerUps", spawnInterval, spawnInterval);
         }
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        
     }
 
     void SpawnEnemies()
@@ -52,5 +51,10 @@ public class SpawnManager : MonoBehaviour
 
         Vector3 spawnRange = new Vector3(randomXRange, 6f, randomZRange);
         Instantiate(powerUp, spawnRange, powerUp.transform.rotation);
+    }
+
+    IEnumerator WaitForPower(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 }

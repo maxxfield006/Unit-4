@@ -37,12 +37,17 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("powerUp"))
         {
             Destroy(collision.gameObject);
-            attackForce += 1000;
-            isPower = true;
-
-            isPower = false;
-
+            StartCoroutine(WaitTime(7));
         }
+    }
+
+    IEnumerator WaitTime(float seconds)
+    {
+        attackForce += 1000;
+        isPower = true;
+        yield return new WaitForSeconds(seconds);
+        attackForce -= 1000;
+        isPower = false;
     }
 
    
